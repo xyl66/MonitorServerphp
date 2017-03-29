@@ -74,7 +74,8 @@ class Login extends \think\Controller
             $User=new User();
             $Auth_group_access=new AuthGroupAccess();
             $aid=is_admin();
-            $isad=$User->where(array('admin_id'=>$aid))->find();
+            $Admin=Db::name('Admin');
+            $isad=$Admin->where(array('admin_id'=>$aid))->find();
             if($isad==Null||$isad['account']!='admin'){
                 return array('status'=>'error','msg'=>'您没有权限！');
             }
