@@ -25,8 +25,8 @@ new Vue({
     methods:{
         check_null:function(event){
             this.warn.name=this.user.account.length<=0?true:false;
-            this.warn.cardid=this.user.cardid.length<=0?true:false;
-            this.warn.realname=this.user.realname.length<=0?true:false;
+            this.warn.cardid=this.user.card_id.length<=0?true:false;
+            this.warn.realname=this.user.real_name.length<=0?true:false;
             this.warn.pwd=this.user.password.length<=0?true:false;
             this.warn.pwd1=this.user.password!=this.user.password1?true:false;
             var user=this.user;
