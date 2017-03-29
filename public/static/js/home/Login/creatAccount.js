@@ -6,20 +6,31 @@ new Vue({
     data:{
         user:{
             account:"",
+            card_id:"",
+            real_name:"",
+            boss_id:"",
+            email:"",
             password:"",
+            password1:"",
             group:"",
         },
         warn:{
             name:false,
             pwd:false,
+            cardid:false,
+            realname:false,
+            pwd1:false,
         },
     },
     methods:{
         check_null:function(event){
             this.warn.name=this.user.account.length<=0?true:false;
+            this.warn.cardid=this.user.cardid.length<=0?true:false;
+            this.warn.realname=this.user.realname.length<=0?true:false;
             this.warn.pwd=this.user.password.length<=0?true:false;
+            this.warn.pwd1=this.user.password!=this.user.password1?true:false;
             var user=this.user;
-            if(!this.warn.name&&!this.warn.pwd){
+            if(!this.warn.name&&!this.warn.pwd&&!this.warn.cardid&&!this.warn.realname&&!this.warn.pwd1){
                 $.confirm({
                     title:'课程签到系统',
                     content: function () {

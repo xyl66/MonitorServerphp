@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href={:Url("Index/index")}>J次集团课程签到系统</a>
+        <a class="navbar-brand" href={:Url("Index/index")}>CFA服务器监控系统</a>
     </div>
     <!-- /.navbar-header -->
     <ul class="nav navbar-nav navbar-right">
@@ -55,7 +55,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="dropdown-menu-header text-center">
                     <strong>Settings</strong>
                 </li>
-                <li class="m_2"><a href={:Url("Admin/Login/creatAccount","","")}><i class="fa fa-user"></i> 新建账号</a></li>
                 <li class="divider"></li>
                 <li class="m_2"><a href={:Url("Admin/Login/logout","","")} class="logout"><i class="fa fa-lock"></i> Logout</a></li>
             </ul>
@@ -68,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a href="javascript:void(0);" onclick="js_method()" class="active Opcache"><i class="fa fa-dashboard fa-fw nav_icon"></i>性能管理</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-laptop nav_icon"></i>系统管理<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-laptop nav_icon"></i>权限管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href={:Url("Admin/Index/group")}>用户组管理</a>
@@ -76,8 +75,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <a href={:Url("Admin/Index/rule")}>权限管理</a>
                         </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user nav_icon"></i>用户管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
                         <li>
                             <a href={:Url("Admin/Index/user")}>用户管理</a>
+                        </li>
+                        <li >
+                            <a href={:Url("Admin/Login/creatAccount","","")}> 新建账号</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
