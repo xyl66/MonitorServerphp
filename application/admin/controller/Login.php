@@ -85,6 +85,15 @@ class Login extends \think\Controller
             if($user['account']==''){
                 return array('status'=>'error','msg'=>'用户名不能为空！');
             }
+            if($user['card_id']==''){
+                return array('status'=>'error','msg'=>'工号不能为空！');
+            }
+            if($user['real_name']==''){
+                return array('status'=>'error','msg'=>'真实姓名不能为空！');
+            }
+            if($user['password']==$user['password1']){
+                return array('status'=>'error','msg'=>'密码不一致！');
+            }
             if($user['password']==''){
                 return array('status'=>'error','msg'=>'密码不能为空！');
             }
@@ -98,6 +107,7 @@ class Login extends \think\Controller
             $user['handler']=$isad['account'];
             $user['creat_time']=time();
             $data['group_id']=$user['group'];
+            unset($user['password1']);
             unset($user['group']);
             $User->data($user);
             $User->save();

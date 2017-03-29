@@ -23,11 +23,34 @@
               <input type="text" v-on:focus="warn.name=0" name="username" v-model="user.account"  class="form-control1 " required="">
                 <div v-show="warn.name" class="coursewarn alert alert-warning">警告！用户名不能为空。</div>
             </div>
+              <div class="form-group">
+                  <label class="control-label">工号：</label>
+                  <input type="text" v-on:focus="warn.cardid=0" name="cardid" v-model="user.card_id"  class="form-control1 " required="">
+                  <div v-show="warn.cardid" class="coursewarn alert alert-warning">警告！工号不能为空。</div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label">姓名：</label>
+                  <input type="text" v-on:focus="warn.realname=0" name="realname" v-model="user.real_name"  class="form-control1 " required="">
+                  <div v-show="warn.realname" class="coursewarn alert alert-warning">警告！真实姓名不能为空。</div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label">上级主管：</label>
+                  <input type="text" name="bossid" v-model="user.boss_id"  class="form-control1 " required="">
+              </div>
+              <div class="form-group">
+                  <label class="control-label">邮箱：</label>
+                  <input type="text" name="email" v-model="user.email"  class="form-control1 " required="">
+              </div>
             <div class="form-group">
                   <label class="control-label normal">密码：</label></br>
                   <input type="password" v-on:focus="warn.pwd=0" name="pwd" v-model="user.password" class="form-control1 form_datetime_start"  >
                   <div v-show="warn.pwd" class="coursewarn alert alert-warning">警告！密码不能为空。</div>
             </div>
+              <div class="form-group">
+                  <label class="control-label normal">确认密码：</label></br>
+                  <input type="password" v-on:focus="warn.pwd1=0" name="pwd1" v-model="user.password1" class="form-control1 form_datetime_start"  >
+                  <div v-show="warn.pwd1" class="coursewarn alert alert-warning">警告！密码不一致。</div>
+              </div>
             <div class="form-group filled">
                   <label class="control-label">用户组：</label>
                   <select class="form-control1 ng-invalid ng-invalid-required" v-model="user.group" required="">
