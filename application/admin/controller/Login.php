@@ -112,7 +112,7 @@ class Login extends \think\Controller
             unset($user['group']);
             $User->data($user);
             $User->save();
-            $uid=$User->admin_id;
+            $uid=$User->id;
             if($uid){
                 $data['uid']=$uid;
                 if($Auth_group_access->data($data)->save()){
@@ -129,7 +129,7 @@ class Login extends \think\Controller
         if(Request::instance()->isAjax()){
             $User=new User();
             $aid=is_admin();
-            $acount=$User->where(array('admin_id'=>$aid))->find();
+            $acount=$User->where(array('id'=>$aid))->find();
             if($acount==Null){
                 return array('status'=>'error','msg'=>'用户不存在！');
             }
@@ -152,7 +152,7 @@ class Login extends \think\Controller
             $data['password']=$user['npassword1'];
             $data['handler']=$acount['account'];
             $data['update_time']=time();
-            $uid=$User->save($data,array('admin_id'=>$aid));
+            $uid=$User->save($data,array('id'=>$aid));
             if($uid){
                 return array('status'=>'success','msg'=>'修改成功！');
             }

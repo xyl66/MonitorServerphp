@@ -38,7 +38,7 @@ class User
             }
             $time = time();
             $token=creatToken($user['uname'],$time);
-            $auth = array('aid' => $admin['admin_id'], 'last_time' => $time,'account'=>$admin['account'],'token'=>$token);
+            $auth = array('aid' => $admin['id'], 'last_time' => $time,'account'=>$admin['account'],'token'=>$token);
             savedata('user_auth'.request()->ip(), $auth,3600);
             return json(array('status' => 1, 'token' => $token,'request'=>request()));
         }

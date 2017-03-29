@@ -17,7 +17,7 @@ class User extends Model
     function getUserList(){
         $Auth_group=db('Auth_group');
         $join = [
-            ['think_auth_group_access w','a.admin_id=w.uid'],
+            ['think_auth_group_access w','a.id=w.uid'],
             ['think_auth_group c','w.group_id=c.id'],
         ];
         $userlist=$this->alias('a')->join($join)->select();

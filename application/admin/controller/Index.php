@@ -155,6 +155,9 @@ class Index extends \think\Controller
             $rulelist = $Auth_rule->select();//获取权限列表
             $newgroup['title']=$group['title'];
             $str='';                            //权限字符串
+            if(!array_key_exists('rules',$group)){
+                return array('status'=>'error','msg'=>'权限不能为空！');
+            }
             foreach ($group['rules'] as $u=>$v){//遍历获取权限字符串
                 if($v=='1'||$v=='true'){
                     $str=$str.strval($rulelist[$u]['id']).',';
@@ -200,9 +203,9 @@ class Index extends \think\Controller
             $admin_user = session('ke_user_auth');
             Db::startTrans();
             try{
-                Db::name('Auth_group_access')->where(array('uid'=>$user['admin_id']))->update(array('group_id'=>$user['group_id']));
+                Db::name('Auth_group_access')->where(array('uid'=>$user['uid']))->update(array('group_id'=>$user['group_id']));
                 $data=array('password'=>$user['password'],'handler'=>$admin_user['account'],'update_time'=>time());
-                Db::name('User')->where(array('admin_id'=>$user['admin_id']))->update($data);
+                Db::name('User')->where(array('id'=>$user['uid']))->update($data);
                 Db::commit();
                 $User=new User();
                 $arr=$User->getUserList();

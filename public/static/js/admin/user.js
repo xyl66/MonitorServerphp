@@ -67,7 +67,7 @@ var vm=new Vue({
             'danger',
         ],
         user_edit:{
-            admin_id:"",
+            uid:"",
             account:"",
             password:"",
             group_id:"",
