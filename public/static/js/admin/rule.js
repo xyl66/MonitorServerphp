@@ -68,6 +68,7 @@ var vm=new Vue({
         rule:{},
         todos:{},
         qrcode_path:"",//二维码地址
+        statusClass:"",//状态样式类型btn-primary btn-danger
         trclass:[
             'active',
             '',
@@ -132,7 +133,7 @@ var vm=new Vue({
         filterCourse:function (courselist) {
             var filter = Vue.filter('filterBy')
             return filter(courselist, this.search,'title');
-        }
+        },
     },
     ready:function() {
         var dd = new Date(), y = dd.getFullYear(), m = dd.getMonth()+1,d = dd.getDate();
@@ -161,6 +162,9 @@ var vm=new Vue({
         setvalue:function(index_id){
             this.rule_edit=this.rule[index_id];
             value2cache(course_edit_cache,this.rule_edit);
+        },
+        getbtnStatusClass:function(status){
+            return status?"btn-danger":"btn-primary"
         },
         setstatus:function(index,status){
             var t=this.rule[index];

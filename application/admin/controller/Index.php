@@ -217,4 +217,18 @@ class Index extends \think\Controller
             }
         }
     }
+    public function userStatusUp(){
+        $User=new User();
+        if(Request::instance()->isAjax()){
+            $user=input('user/a');//获取客户端传过来的参数
+            if($user['ustatus']==='false'){
+                $uparr['status']=0;
+            }
+            if($user['ustatus']==='true'){
+                $uparr['status']=1;
+            }
+            $User->save($uparr,['id'=>$user['uid']]);
+            return array('status'=>'success','msg'=>'更新成功！');
+        }
+    }
 }

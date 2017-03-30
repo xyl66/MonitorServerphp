@@ -5,6 +5,9 @@ function fillZero(v){
     if(v<10){v='0'+v;}
     return v;
 }
+function getStatus(status){ //int转字符串
+    return status?'启用':'禁用';
+}
 var boot=function(currentPage,totalPages){
     $( '#example' ).bootstrapPaginator({
         currentPage: currentPage,   //当前页
@@ -148,6 +151,9 @@ var vm=new Vue({
             S = fillZero(d.getSeconds());
             return Y + '-' + M + '-' + D + ' ' + H + ':' + I + ':' + S;
         },
+        getStatusBtn:function(type){ //获取状态
+            return type?'禁用':'启用';
+        },
     },
     methods:{
         setvalue:function(index_id){
@@ -155,6 +161,47 @@ var vm=new Vue({
             this.user_edit=this.filteredList[index_id];
             document.getElementById("uppassword").disabled=true;
 
+        },
+        getbtnStatusClass:function(status){ //获取状态class
+            return status?"btn-danger":"btn-primary"
+        },
+        setstatus:function(index,status){
+            var t=this.userlist[index];
+            t.ustatus=!status;
+            $.confirm({
+                title:'课程签到系统',
+                content: function () {
+                    var self = this;
+                    return $.ajax({
+                        url: upUserStatusURL,
+                        type: 'post',
+                        dataType:'json',
+                        data: {
+                            'user': t,
+                        },
+                    }).done(function (result) {
+                        if(result.status=='success'){
+                            self.setContent('<p>温馨提示：</p>');
+                            self.setContentAppend('<p style="padding-left: 56px;">'+getStatus(!status)+'成功！</p>');
+                        }
+                        else{
+                            self.setContent('<p>温馨提示：</p>');
+                            self.setContentAppend('<p style="padding-left: 56px;">状态修改失败：'+result.msg+'</p>');
+                        }
+                    }).fail(function () {
+                        self.setContent('<p>温馨提示：</p>');
+                        self.setContentAppend('<p style="padding-left: 56px;">服务器响应失败.</p>');
+                    });
+                },
+                buttons: {
+                    '确定': {
+                        btnClass: 'btn-info',
+                        action: function () {
+                            $("button[class='close']").click();
+                        }
+                    },
+                }
+            });
         },
         check_null:function(event){
             this.warn.title=this.user_edit.title.length<=0?true:false;

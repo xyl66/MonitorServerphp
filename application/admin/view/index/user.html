@@ -10,7 +10,7 @@
 {block name="headjs"}
 	<script src="__JS__/home/bootStrap/bootstrap-paginator.min.js"></script>
 	<script type="text/javascript">
-		var upUserURL='{:Url("Admin/Index/userUp","","")}';
+		var upUserURL='{:Url("Admin/Index/userUp","","")}',upUserStatusURL='{:Url("Admin/Index/userStatusUp","","")}';
 		var indexURL='{:Url("Admin/Index/user","","")}',geturlURL='{:Url("Home/Index/getUrl","","")}';
 	</script>
 {/block}
@@ -53,7 +53,7 @@
 							  <td class="col-md-2" v-bind:group_id="todo.id">
 								  <div class="row">
 									  <div class="col-md-5"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" >编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
-									  <!--<div class="col-md-7"><button v-on:click="setstatus(index,todo.status)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" >{{todo.status|getStatusBtn}}</button></div>-->
+									  <div class="col-md-4"><button v-on:click="setstatus(index,todo.ustatus)" :class="getbtnStatusClass(todo.ustatus)" class="exportqrcode btn-sm" data-toggle="modal" >{{todo.ustatus|getStatusBtn}}</button></div>
 								  </div>
 							  </td>
 						  </tr>

@@ -36,6 +36,9 @@ class User
             if($user['pwd']!=$admin['password']){
                 return json(array('status'=>'error','msg'=>'密码错误！'));
             }
+            if(!$admin['status']){
+                return json(array('status'=>'error','msg'=>'用户帐号被锁定，请联系管理员解锁！'));
+            }
             $time = time();
             $token=creatToken($user['uname'],$time);
             $auth = array('aid' => $admin['id'], 'last_time' => $time,'account'=>$admin['account'],'token'=>$token);

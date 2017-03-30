@@ -20,7 +20,7 @@ class User extends Model
             ['think_auth_group_access w','a.id=w.uid'],
             ['think_auth_group c','w.group_id=c.id'],
         ];
-        $userlist=$this->alias('a')->join($join)->select();
+        $userlist=$this->alias('a')->join($join)->field('*,a.status as ustatus')->select();
         $t=$this->getLastSql();
         $grouplist=$Auth_group->select();
         $arr['userlist']=$userlist;

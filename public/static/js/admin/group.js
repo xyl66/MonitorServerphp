@@ -150,6 +150,9 @@ var vm=new Vue({
             this.group_edit=this.group[index_id];
             value2cache(course_edit_cache,this.group_edit);
         },
+        getbtnStatusClass:function(status){
+            return status?"btn-danger":"btn-primary"
+        },
         setstatus:function(index,status){
             var t=this.group[index];
             t.status=!status;

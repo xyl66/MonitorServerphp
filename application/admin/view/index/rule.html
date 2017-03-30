@@ -60,7 +60,7 @@
 							  <td class="col-md-2" v-bind:rule_id="todo.id">
 								  <div class="row">
 									  <div class="col-md-5"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" >编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
-									  <div class="col-md-7"><button v-on:click="setstatus(index,todo.status)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" >{{todo.status|getStatusBtn}}</button></div>
+									  <div class="col-md-7"><button v-on:click="setstatus(index,todo.status)" :class="getbtnStatusClass(todo.status)" class="exportqrcode btn-sm" data-toggle="modal" >{{todo.status|getStatusBtn}}</button></div>
 								  </div>
 							  </td>
 						  </tr>
