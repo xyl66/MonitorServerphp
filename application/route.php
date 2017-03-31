@@ -20,6 +20,10 @@ Route::rule(':version/serviceApply','api/:version.monitor/serviceApply');
 Route::rule(':version/getServerApplyList','api/:version.monitor/getServerApplyList');
 Route::rule(':version/updateServerApply','api/:version.monitor/updateServerApply');
 Route::rule(':version/updateServerApplyStatus','api/:version.monitor/updateServerApplyStatus');
+Route::rule(':version/getUserList','api/:version.user/userList');
+Route::rule(':version/userUpdate','api/:version.user/userUpdate');
+Route::rule(':version/userStatusUpdate','api/:version.user/userStatusUp');
+Route::rule(':version/userAdd','api/:version.user/userAdd');
 Route::resource('blogs','index/blog');
 return [
     '__pattern__' => [

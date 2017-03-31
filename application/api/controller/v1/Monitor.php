@@ -12,6 +12,7 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Orgin,XMLHttpRequest,A
 
 class Monitor extends base
 {
+    //初始化权限判断
     public function __construct()
     {
         $user=getdata('user_auth'.request()->ip());

@@ -160,7 +160,8 @@ var vm=new Vue({
     },
     methods:{
         setvalue:function(index_id){
-            this.rule_edit=this.rule[index_id];
+            var t=(this.currentPage-1)*10+index_id
+            this.rule_edit=this.rule[t];
             value2cache(course_edit_cache,this.rule_edit);
         },
         getbtnStatusClass:function(status){
