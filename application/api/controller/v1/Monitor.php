@@ -229,14 +229,22 @@ class Monitor extends base
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
         if(request()->isPost()){
             $form=input('param.form/a');
-            $status=input('param.status/d');
             $server=new ServiceApply();
-            $list=[];
-            foreach ($form as $key=>$value){
-                array_push($list,['id'=>$value['id'],'isValid'=>$status]);
+            if(input('param.status/d')){
+                $status=input('param.status/d');
+                $list=[];
+                foreach ($form as $key=>$value){
+                    array_push($list,['id'=>$value['id'],'isValid'=>$status]);
+                }
+                // 批量更新
+                $t=$server->saveAll($list);
             }
-            // 批量更新
-            $t=$server->saveAll($list);
+            else{
+                $form['isValid']=$form['isValid']==="false"?1:0;
+                $t=$server->save([
+                    'isValid'  => $form['isValid']
+                ],['id' => $form['id']]);
+            }
             if($t){
                 return json(['msg'=>'success','status'=>1,'sqlreturn'=>$t]);
             }
