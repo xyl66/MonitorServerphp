@@ -230,7 +230,6 @@ class Monitor extends base
         if(request()->isPost()){
             $form=input('param.form/a');
             $server=new ServiceApply();
-            return json(['msg'=>'erro','status'=>0,'t'=>input('?param.status')]);
             if(input('?param.status')){
                 $status=input('param.status/d');
                 $list=[];
