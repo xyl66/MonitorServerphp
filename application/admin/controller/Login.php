@@ -61,6 +61,10 @@ class Login extends \think\Controller
             $this->redirect('login');
         }
     }
+    /**
+     * [creatAccount 创建账号]
+     * @return [type] [description]
+     */
     public function creatAccount(){
         //权限认证
         define('SID', is_login());
@@ -125,6 +129,10 @@ class Login extends \think\Controller
         return view('creatAccount',['grouplist'=>$group_list]);
     }
     //更改密码
+    /**
+     * [updateAccount 当前用户修改密码]
+     * @return [type] [description]
+     */
     public function updateAccount(){
         if(Request::instance()->isAjax()){
             $User=new User();

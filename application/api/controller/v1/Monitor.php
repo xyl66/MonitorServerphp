@@ -29,16 +29,27 @@ class Monitor extends base
         else
             Session::set('name',1);
     }
+    /**
+     * 测试用
+     * @return [type] [description]
+     */
     public function index()
     {
         return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_bd568ce7058a1091"></thinkad>';
     }
+    /** 测试用 */
     public function indexapi()
     {
         $data = ['name'=>'thinkphp','url'=>'thinkphp.cn'];
         return json(['data'=>$data,'code'=>1,'message'=>'操作完成']);
     }
     //获取服务器列表
+    /**
+     * [getServerList 获取服务器列表（当前用户创建的服务器）]
+     * @param  integer $user [当前账号session信息]
+     * @param  integer $uid [用户账号]
+     * @return [type] [description]
+     */
     public function getServerList(){
         if(!$this->havePerm())
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
@@ -75,6 +86,11 @@ class Monitor extends base
         return json($date);
     }
     //添加服務器
+    /**
+     * [addServer 添加服务器]
+     * @param  integer $form [前端传来的服务器表单信息]
+     * @param  integer $user [session中用户信息]
+     */
     public function addServer(){
         if(!$this->havePerm())
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
@@ -97,6 +113,12 @@ class Monitor extends base
     }
 
     //更改服务器信息
+    /**
+     * [updateServer 修改服务器信息]
+     * @param  integer $user [session用户信息]
+     * @param  integer $form [服务器表单信息]
+     * @return [type] [description]
+     */
     public function updateServer(){
         if(!$this->havePerm())
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
@@ -119,13 +141,18 @@ class Monitor extends base
         }
     }
     //批量更改服务器状态
+    /**
+     * [updateServerStatus 修改服务器状态]
+     * @param  integer $form [服务器信息数组]
+     * @param  integer $status 需更改的最终状态（前端已处理过）
+     * @return [type] [description]
+     */
     public function updateServerStatus(){
         if(!$this->havePerm())
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
         if(request()->isPost()){
             $form=input('param.form/a');
             $status=input('param.status/d');
-            $apply=input('param.apply/d');//获取apply true对应service_apply表 false对应deviceinfo表
             $server=new Deviceinfo();
             $list=[];
             foreach ($form as $key=>$value){
@@ -141,6 +168,11 @@ class Monitor extends base
         }
     }
     //服务器申请
+    /**
+     * [serviceApply 服务器申请]
+     * @param  integer $user [session用户信息]
+     * @return [type] [description]
+     */
     public function serviceApply(){
         if(!$this->havePerm())
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
@@ -223,7 +255,14 @@ class Monitor extends base
                 return json(['msg'=>'erro','status'=>0]);
         }
     }
-    //批量更改服务器申请状态
+    //更改服务器申请状态
+    /**
+     * [updateServerApplyStatus 更改服务器申请状态]
+     * @param  input('?param.status') [是否是批量修改，true表示批量修改，false表示单个修改]
+     * @param   $status 需更改的最终状态（前端已处理过）
+     * @param   $form['isValid'] 需更改的初始状态（前端未处理过；取反1>0、0>1）
+     * @return [type] [description]
+     */
     public function updateServerApplyStatus(){
         if(!$this->havePerm())
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
@@ -240,6 +279,7 @@ class Monitor extends base
                 $t=$server->saveAll($list);
             }
             else{
+                /** 单个更新 */
                 $form['isValid']=$form['isValid']==="false"?1:0;
                 $t=$server->save([
                     'isValid'  => $form['isValid']

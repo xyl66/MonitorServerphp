@@ -28,7 +28,12 @@ class User
         else
             Session::set('name',1);
     }
-    //获取用户信息
+    //
+    /**
+     * [read 获取用户信息]    
+     * @param  integer $id [用户id]
+     * @return [type]      [返回json类型用户信息]
+     */
     public function read($id = 0)
     {
 
@@ -39,7 +44,10 @@ class User
             return json(['error' => '用户不存在'], 404);
         }
     }
-
+    /**
+     * [login 登陆]
+     * @return [type] [返回json对象]
+     */
     public function login()
     {
         if (Request::instance()->isPost()) {
@@ -77,7 +85,10 @@ class User
         }
         return array('status' => 0, 'url' => 'shibai');
     }
-
+    /**
+     * [userList 用户列表]
+     * @return [type] [成功返回用户信息数组]
+     */
     public function userList()
     {
         if(!$this->havePerm())
@@ -98,6 +109,10 @@ class User
     }
 
     //更该用户信息
+    /**
+     * [userUpdate 更新用户信息]
+     * @return [type] [成功返回 编辑者id 编辑时间]
+     */
     public function userUpdate()
     {
         if(!$this->havePerm())
@@ -132,6 +147,11 @@ class User
         }
     }
     //更改用户状态
+    /**
+     * [userStatusUp 更新用户状态]
+     * @param $user['ustatus'] 需更改的用户初始状态（前端未处理过；取反1>0、0>1）
+     * @return [type] 返回编辑者 编辑时间
+     */
     public function userStatusUp(){
         if(!$this->havePerm())
             return json(['msg'=>'抱歉，您沒有權限','status'=>0]);
@@ -149,6 +169,10 @@ class User
         }
     }
     //添加用户
+    /**
+     * [userAdd description]
+     * @return [type] [description]
+     */ 
     public function userAdd(){
         //权限认证
         if(!$this->havePerm())

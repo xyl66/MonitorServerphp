@@ -27,6 +27,10 @@ class Index extends \think\Controller
         }
     }
     //用户
+    /**
+     * [index 用户列表]
+     * @return [type] [description]
+     */
     public function index(){
         if(Request::instance()->isAjax()){
             $User=new User();
@@ -36,6 +40,10 @@ class Index extends \think\Controller
         return view('user');
     }
     //权限
+    /**
+     * [rule 权限列表]
+     * @return [type] [description]
+     */
     public function rule(){
         if(Request::instance()->isAjax()){
             $Auth_rule=new AuthRule();
@@ -45,6 +53,10 @@ class Index extends \think\Controller
         return view('rule');
     }
     //修改权限
+    /**
+     * [ruleUp 修改权限]
+     * @return [type] [description]
+     */
     public function ruleUp(){
         if(Request::instance()->isAjax()){
             $rule=input('post.rule/a');
@@ -63,6 +75,11 @@ class Index extends \think\Controller
         }
     }
     //启禁用权限
+    /**
+     * $rule['status'] 权限需要修改的最终状态（前端已处理过）
+     * @param array $rule 权限信息数组
+     * @return [type] [description]
+     */
     public function ruleStatusUp(){
         $rule=input('rule/a');
         if($rule['status']==='false'){
@@ -131,6 +148,10 @@ class Index extends \think\Controller
         }
     }
     //修改用户组状态
+    /**
+     * @param   $group['status'] 需要修改的最终状态（前端已处理过）
+     * @return [type] [description]
+     */
     public function groupstatusup(){
         $Auth_group=new AuthGroup();
         if(Request::instance()->isAjax()){
